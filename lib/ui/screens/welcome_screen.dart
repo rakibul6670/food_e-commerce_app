@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
 import 'package:food_ecommerce_app/ui/screens/authentication_screen.dart';
+import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -49,7 +50,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
 
-                  //================== basket =======
+                  //================== basket table  =======
                   Positioned(
                     top: 423,
                     left: 0,
@@ -65,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
 
-            //================ Bottom Section =========================
+            //================ Bottom Section ========================================
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -90,32 +91,18 @@ class WelcomeScreen extends StatelessWidget {
 
                 SizedBox(height: 58),
                 //--------------------------- Lets Gets Button ----------
-                SizedBox(
-                  height: 56,
+                CustomTextButton(
                   width: screenWidth * .80,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: theme.primaryColor,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  buttonName: "Let's Continue",
+                  onpressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthenticationScreen(),
                       ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AuthenticationScreen(),
-                        ),
-                        (predicate) => false,
-                      );
-
-                      // Navigator.pushNamedAndRemoveUntil(context, MaterialPageRoute(
-                      //   builder: (context)=> AuthenticationScreen(),
-                      //   ( predicate)=> false);
-                    },
-                    child: Text("Let’s Continue"),
-                  ),
+                      (predicate) => false,
+                    );
+                  },
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
 import 'package:food_ecommerce_app/ui/screens/home_screen.dart';
+import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({super.key});
@@ -90,30 +91,16 @@ class AuthenticationScreen extends StatelessWidget {
 
                 SizedBox(height: 42),
                 //--------------------------- Lets Gets Button ----------
-                SizedBox(
-                  height: 56,
+                CustomTextButton(
                   width: screenWidth * .80,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: theme.primaryColor,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                        (predicate) => false,
-                      );
-
-                      // Navigator.pushNamedAndRemoveUntil(context, MaterialPageRoute(
-                      //   builder: (context)=> AuthenticationScreen(),
-                      //   ( predicate)=> false);
-                    },
-                    child: Text("Start Ordering"),
-                  ),
+                  buttonName: "Start Ordering ",
+                  onpressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      (predicate) => false,
+                    );
+                  },
                 ),
               ],
             ),
