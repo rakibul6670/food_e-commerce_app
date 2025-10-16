@@ -46,7 +46,7 @@ class FoodDetailsScreen extends StatelessWidget {
               //=================================== Food Details ==========================
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                height: screenHeight * .60,
+                //height: screenHeight * .60,
                 width: screenWidth,
                 decoration: BoxDecoration(
                   color: Colors.white,

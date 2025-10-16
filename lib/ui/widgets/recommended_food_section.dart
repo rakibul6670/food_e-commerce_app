@@ -28,7 +28,7 @@ class RecommendedFoodSection extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
-                boxShadow: [BoxShadow()],
+                //boxShadow: [BoxShadow()],
               ),
               child: Stack(
                 children: [

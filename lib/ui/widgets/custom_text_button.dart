@@ -5,6 +5,9 @@ class CustomTextButton extends StatelessWidget {
   final double width;
   final String buttonName;
   final VoidCallback onpressed;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final BorderSide? borderSide;
 
   const CustomTextButton({
     super.key,
@@ -12,6 +15,9 @@ class CustomTextButton extends StatelessWidget {
     required this.width,
     required this.buttonName,
     required this.onpressed,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.borderSide,
   });
 
   @override
@@ -23,9 +29,10 @@ class CustomTextButton extends StatelessWidget {
       width: width,
       child: FilledButton(
         style: FilledButton.styleFrom(
-          backgroundColor: theme.primaryColor,
-          foregroundColor: Colors.white,
+          backgroundColor: backgroundColor ?? theme.primaryColor,
+          foregroundColor: foregroundColor ?? Colors.white,
           shape: RoundedRectangleBorder(
+            side: borderSide ?? BorderSide.none,
             borderRadius: BorderRadius.circular(10),
           ),
         ),
