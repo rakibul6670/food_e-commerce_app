@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/theme/app_colors.dart';
-import 'package:food_ecommerce_app/ui/screens/order_complete_screen.dart';
-import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
+import 'package:food_ecommerce_app/ui/screens/track_order_screen.dart';
 
 dynamic payWithCardBottomSheet(context) {
   final screenSize = MediaQuery.of(context).size;
@@ -20,6 +19,7 @@ dynamic payWithCardBottomSheet(context) {
     builder: (context) {
       return Column(
         mainAxisSize: MainAxisSize.min,
+
         children: [
           SizedBox(
             height: 48,
@@ -101,14 +101,33 @@ dynamic payWithCardBottomSheet(context) {
 
                 //--------------------- Date CCV Title --------------------------
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     //----------------- Date title -----------
-                    Text("Date"),
+                    Text(
+                      "Date",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+
+                        color: AppColors.textPrimaryColor,
+
+                        //fontFamily: bando
+                      ),
+                    ),
                     Spacer(),
 
                     //---------------- CCV Title -------------
-                    Text("CCV"),
+                    Text(
+                      "CCV",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+
+                        color: AppColors.textPrimaryColor,
+
+                        //fontFamily: bando
+                      ),
+                    ),
 
                     SizedBox(width: screenWidth * .30),
                   ],
@@ -138,38 +157,50 @@ dynamic payWithCardBottomSheet(context) {
                   ],
                 ),
 
-                // Row(
-                //   children: [
-                //     //--------------------- Date ---------------------
-                //     SizedBox(
-                //       width: screenWidth * .40,
-                //       child: Column(
-                //         children: [
-                //           Text("Date"),
-                //           TextFormField(
-                //             decoration: InputDecoration(hintText: "10/30"),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-
-                //     //--------- free jayga ja space nibe-----
-                //     Spacer(),
-
-                //     //------------------ CCV -----------
-                //     SizedBox(
-                //       width: screenWidth * .40,
-                //       child: Column(
-                //         children: [
-                //           Text("CCV"),
-                //           TextFormField(
-                //             decoration: InputDecoration(hintText: "123"),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                SizedBox(height: 24),
+                //------------------ Bottom Complete Button Section -----------
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    (context),
+                    MaterialPageRoute(builder: (context) => TrackOrderSreen()),
+                  ),
+                  child: Container(
+                    // padding: EdgeInsets.symmetric(),
+                    height: 96,
+                    decoration: BoxDecoration(
+                      color: theme.primaryColor,
+                      borderRadius: BorderRadius.circular(24),
+                      // borderRadius: BorderRadius.only(
+                      //   topLeft: Radius.circular(24),
+                      //   topRight: Radius.circular(24),
+                      // ),
+                    ),
+                    child: Center(
+                      child: Container(
+                        //padding: EdgeInsets.all(16),
+                        height: 56,
+                        width: 135,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Complete Order",
+                            style: TextStyle(
+                              color: theme.primaryColor,
+                              fontSize: 16,
+                              height: 24 / 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                //------------space ------------
+                //SizedBox(height: 20),
               ],
             ),
           ),

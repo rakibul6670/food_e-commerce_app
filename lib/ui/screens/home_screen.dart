@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_icons_path.dart';
+import 'package:food_ecommerce_app/core/theme/app_colors.dart';
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/my_favorites_screen.dart';
+import 'package:food_ecommerce_app/ui/screens/search_filter_section.dart';
 import 'package:food_ecommerce_app/ui/widgets/categories_food_section.dart';
 import 'package:food_ecommerce_app/ui/widgets/icon_label_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/recommended_food_section.dart';
@@ -21,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     //  final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: Color(0xffF8F8F8),
@@ -40,7 +42,11 @@ class _HomeScreenState extends State<HomeScreen>
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //----------- Drawer menu Icon Button -----
-                    Icon(Icons.menu),
+                    Image.asset(
+                      AssetsIconsPath.drawerIcon,
+                      width: 22,
+                      height: 11,
+                    ),
 
                     Spacer(),
 
@@ -85,53 +91,36 @@ class _HomeScreenState extends State<HomeScreen>
 
                 Text(
                   "Hello Tony, What fruit salad \n combo do you want today?",
-                  style: TextStyle(color: Color(0xff27214D)),
+                  style: TextStyle(
+                    color: AppColors.textPrimaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
 
                 SizedBox(height: 24),
 
-                //--------------- Search and Filter Section -------------
-                Row(
-                  children: [
-                    //------------ Search box ---------------
-                    SizedBox(
-                      width: screenWidth * .78,
-                      height: 56,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: "Search for fruit salad combos",
-                          hintStyle: TextStyle(
-                            color: Color(0xff86869E),
-                            letterSpacing: 0,
-                            fontSize: 14,
-                          ),
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: Color(0xff86869E),
-                            size: 25,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(width: 10),
-
-                    //--------------- Filter icon button -----
-                    Icon(Icons.filter_list_alt, color: Color(0xff203B7C)),
-                  ],
-                ),
+                //===================== Search and Filter Section ==============
+                SearchFilterSection(),
 
                 //========================== Recommended Food Section =============
                 //--------------- Section title -------------------
                 SizedBox(height: 39),
-                Text("Recommended Combo"),
+                Text(
+                  "Recommended Combo",
+                  style: TextStyle(
+                    color: AppColors.textPrimaryColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 SizedBox(height: 25),
 
                 RecommendedFoodSection(),
 
                 SizedBox(height: 48),
 
-                //========================= Bottom Categories Food Card ==============
+                //=========================  Categories Food Card Tab bar ==============
                 CategoriesFoodSection(tabController: tabController),
                 //SizedBox(height: screenHeight < 700 ? 35 : 0),
                 SizedBox(height: 30),

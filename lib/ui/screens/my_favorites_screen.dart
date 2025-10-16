@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ecommerce_app/ui/widgets/f_e_app_bar.dart';
 import 'package:food_ecommerce_app/ui/widgets/food_list_title.dart';
 
 class MyFavoritesScreen extends StatelessWidget {
@@ -10,11 +11,7 @@ class MyFavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       //======================== App Bar Section ==========================
-      appBar: AppBar(
-        backgroundColor: theme.primaryColor,
-        title: Text("My Favorites"),
-        centerTitle: true,
-      ),
+      appBar: FEAppBar(title: 'My Favorites', spaceWidth: 26),
 
       //====================== Body Section ==========================
       body: SafeArea(

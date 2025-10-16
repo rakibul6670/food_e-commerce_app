@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/theme/app_colors.dart';
-import 'package:food_ecommerce_app/ui/screens/order_complete_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/checkout_bottom_modal_sheet.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
+import 'package:food_ecommerce_app/ui/widgets/f_e_app_bar.dart';
 import 'package:food_ecommerce_app/ui/widgets/food_list_title.dart';
 
 class MyBasketScreen extends StatelessWidget {
@@ -10,16 +10,12 @@ class MyBasketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    // final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       //======================== App Bar Section ==========================
-      appBar: AppBar(
-        backgroundColor: theme.primaryColor,
-        title: Text("My Basket"),
-        centerTitle: true,
-      ),
+      appBar: FEAppBar(title: 'My Basket', spaceWidth: 34),
 
       //====================== Body Section ==========================
       body: SafeArea(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
+import 'package:food_ecommerce_app/core/theme/app_colors.dart';
 import 'package:food_ecommerce_app/ui/screens/home_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 
@@ -75,7 +76,11 @@ class AuthenticationScreen extends StatelessWidget {
                 //---------------- Title --------------
                 Text(
                   "What is your firstname?",
-                  style: TextStyle(fontFamily: "Bad Script"),
+                  style: TextStyle(
+                    color: AppColors.textPrimaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
 
                 SizedBox(height: 16),

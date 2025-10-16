@@ -65,6 +65,7 @@ flutter:
   #-------------- thsi is font ------
   - assets/fonts/bad_script/BadScript-Regular.ttf
   - assets/fonts/josefin_sans/
+  - assets/fonts/josefin_sans/static/
   - assets/fonts/
   - assets/icons/
   - assets/images/
@@ -92,6 +93,21 @@ flutter:
       fonts:
         - asset: assets/fonts/josefin_sans/JosefinSans-VariableFont_wght.ttf
         - asset: assets/fonts/josefin_sans/JosefinSans-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Bold.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-BoldItalic.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-ExtraLight.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Italic.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Light.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-LightItalic.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Medium.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-MediumItalic.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Regular.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-SemiBold.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-Thin.ttf
+        - asset: assets/fonts/josefin_sans/static/JosefinSans-ThinItalic.ttf
+        - asset: assets/fonts/josefin_sans/JosefinSans-Italic-VariableFont_wght.ttf
+        - asset: assets/fonts/josefin_sans/JosefinSans-VariableFont_wght.ttf
 
 
   # fonts:

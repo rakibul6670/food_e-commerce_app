@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
+import 'package:food_ecommerce_app/core/theme/app_colors.dart';
 import 'package:food_ecommerce_app/ui/screens/authentication_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 
@@ -75,7 +76,11 @@ class WelcomeScreen extends StatelessWidget {
                 //---------------- Title --------------
                 Text(
                   "Get The Freshest Fruit Salad Combo",
-                  style: TextStyle(fontFamily: "Bad Script"),
+                  style: TextStyle(
+                    color: AppColors.textPrimaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
 
                 SizedBox(height: 8),
@@ -85,7 +90,9 @@ class WelcomeScreen extends StatelessWidget {
                   "We deliver the best and freshest fruit salad in \n town. Order for a combo today!!!",
 
                   style: TextStyle(
-                    //fontFamily: "bad_script",
+                    color: AppColors.textPrimaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
 

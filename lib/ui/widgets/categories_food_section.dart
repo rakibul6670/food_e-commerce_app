@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ecommerce_app/core/theme/app_colors.dart';
 import 'package:food_ecommerce_app/ui/widgets/recommended_food_section.dart';
 
 class CategoriesFoodSection extends StatelessWidget {
@@ -8,16 +9,32 @@ class CategoriesFoodSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       children: [
         TabBar(
+          labelStyle: TextStyle(
+            color: AppColors.textPrimaryColor,
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
+          ),
+          unselectedLabelStyle: TextStyle(
+            color: Color(0xff938DB5),
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+          tabAlignment: TabAlignment.start,
+          indicatorColor: theme.primaryColor,
           dividerColor: Colors.transparent,
           indicatorSize: TabBarIndicatorSize.tab,
           //dragStartBehavior: DragStartBehavior.down,
+          isScrollable: true,
           controller: tabController,
 
           tabs: [
             Tab(text: "Hottest"),
+
             Tab(text: "Popular"),
             Tab(text: "New Combo"),
             // Tab(

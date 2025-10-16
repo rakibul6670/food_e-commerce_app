@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
 import 'package:food_ecommerce_app/ui/screens/food_details_screen.dart';
+import 'package:food_ecommerce_app/ui/widgets/icon_label_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/on_tap_icon_button.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
@@ -33,7 +34,17 @@ class RecommendedFoodSection extends StatelessWidget {
               child: Stack(
                 children: [
                   //------------------- Favorites icon ----------
-                  Positioned(top: 10, right: 16, child: Icon(Icons.favorite)),
+                  Positioned(
+                    top: 10,
+                    right: 16,
+                    child: OnTapIconButton(
+                      iconData: Icons.favorite_border,
+                      color: Colors.transparent,
+                      onTap: () {},
+                    ),
+                  ),
+
+                  // Positioned(top: 10, right: 16, child: Icon(Icons.favorite)),
 
                   //------------------ Image --------------
                   Positioned(
