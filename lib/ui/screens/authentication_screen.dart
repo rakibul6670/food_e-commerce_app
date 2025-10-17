@@ -16,100 +16,102 @@ class AuthenticationScreen extends StatelessWidget {
     return Scaffold(
       //================ Body Section ==================
       body: SafeArea(
-        child: Column(
-          children: [
-            //==================== Welcome Image Top Section ===========
-            Container(
-              height: screenHeight * .60,
-              width: screenWidth,
-              decoration: BoxDecoration(color: theme.primaryColor),
-              child: Stack(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //==================== Welcome Image Top Section ===========
+              Container(
+                height: screenHeight * .60,
+                width: screenWidth,
+                decoration: BoxDecoration(color: theme.primaryColor),
+                child: Stack(
+                  children: [
+                    //================== basket ================
+                    Positioned(
+                      top: 131,
+                      //left: 0,
+                      right: 43,
+                      child: Image.asset(
+                        AssetsImagesPath.fuirtsDrops2,
+                        height: 50,
+                        width: 37,
+                        //fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    //================== food basket ================
+                    Positioned(
+                      top: 155,
+                      left: 0,
+                      right: 0,
+                      child: Image.asset(
+                        AssetsImagesPath.authFoodBasket,
+                        height: 260,
+                        width: 310,
+                        //fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    //================== basket =======
+                    Positioned(
+                      top: 423,
+                      left: 0,
+                      right: 0,
+                      child: Image.asset(
+                        AssetsImagesPath.authEllipes,
+                        height: 12,
+                        width: 301,
+                        //fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              //================ Bottom Section =========================
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //================== basket ================
-                  Positioned(
-                    top: 131,
-                    //left: 0,
-                    right: 43,
-                    child: Image.asset(
-                      AssetsImagesPath.fuirtsDrops2,
-                      height: 50,
-                      width: 37,
-                      //fit: BoxFit.cover,
+                  SizedBox(height: 56),
+
+                  //---------------- Title --------------
+                  Text(
+                    "What is your firstname?",
+                    style: TextStyle(
+                      color: AppColors.textPrimaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
 
-                  //================== food basket ================
-                  Positioned(
-                    top: 155,
-                    left: 0,
-                    right: 0,
-                    child: Image.asset(
-                      AssetsImagesPath.authFoodBasket,
-                      height: 260,
-                      width: 310,
-                      //fit: BoxFit.cover,
+                  SizedBox(height: 16),
+
+                  //---------------- Name Field  --------------
+                  SizedBox(
+                    height: 56,
+                    width: screenWidth * .80,
+                    child: TextFormField(
+                      decoration: InputDecoration(hintText: "Jone"),
                     ),
                   ),
 
-                  //================== basket =======
-                  Positioned(
-                    top: 423,
-                    left: 0,
-                    right: 0,
-                    child: Image.asset(
-                      AssetsImagesPath.authEllipes,
-                      height: 12,
-                      width: 301,
-                      //fit: BoxFit.cover,
-                    ),
+                  SizedBox(height: 42),
+                  //--------------------------- Lets Gets Button ----------
+                  CustomTextButton(
+                    width: screenWidth * .80,
+                    buttonName: "Start Ordering ",
+                    onpressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (predicate) => false,
+                      );
+                    },
                   ),
                 ],
               ),
-            ),
-
-            //================ Bottom Section =========================
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 56),
-
-                //---------------- Title --------------
-                Text(
-                  "What is your firstname?",
-                  style: TextStyle(
-                    color: AppColors.textPrimaryColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-                SizedBox(height: 16),
-
-                //---------------- Name Field  --------------
-                SizedBox(
-                  height: 56,
-                  width: screenWidth * .80,
-                  child: TextFormField(
-                    decoration: InputDecoration(hintText: "Jone"),
-                  ),
-                ),
-
-                SizedBox(height: 42),
-                //--------------------------- Lets Gets Button ----------
-                CustomTextButton(
-                  width: screenWidth * .80,
-                  buttonName: "Start Ordering ",
-                  onpressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                      (predicate) => false,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

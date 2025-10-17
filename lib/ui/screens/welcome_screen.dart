@@ -17,6 +17,7 @@ class WelcomeScreen extends StatelessWidget {
       //================ Body Section ==================
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //==================== Welcome Image Top Section ===========
             Container(
@@ -69,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
 
             //================ Bottom Section ========================================
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 56),
 

@@ -27,6 +27,38 @@ class FoodDetailsScreen extends StatelessWidget {
                 decoration: BoxDecoration(color: theme.primaryColor),
                 child: Stack(
                   children: [
+                    //----------------- Back button
+                    Positioned(
+                      top: 24,
+                      left: 24,
+                      child: GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          height: 32,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.arrow_back_ios, size: 15),
+                              Text(
+                                "back",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
                     Positioned(
                       top: 62,
                       left: 0,

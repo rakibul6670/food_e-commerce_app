@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/theme/app_colors.dart';
 import 'package:food_ecommerce_app/ui/screens/home_screen.dart';
+import 'package:food_ecommerce_app/ui/screens/track_order_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 
 class OrderCompleteScreen extends StatelessWidget {
@@ -91,7 +92,10 @@ class OrderCompleteScreen extends StatelessWidget {
                 CustomTextButton(
                   width: screenWidth * .40,
                   buttonName: "Track order",
-                  onpressed: () {},
+                  onpressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TrackOrderSreen()),
+                  ),
                 ),
 
                 //------------- space -
