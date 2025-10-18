@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_icons_path.dart';
 import 'package:food_ecommerce_app/core/theme/app_colors.dart';
+import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/my_favorites_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/search_filter_section.dart';
 import 'package:food_ecommerce_app/ui/widgets/categories_food_section.dart';
 import 'package:food_ecommerce_app/ui/widgets/icon_label_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/recommended_food_section.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,13 +23,22 @@ class _HomeScreenState extends State<HomeScreen>
   late TabController tabController = TabController(length: 4, vsync: this);
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.microtask((){
+      context.read<FoodDataController>().getRecommendedFood();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     //  final screenHeight = MediaQuery.of(context).size.height;
     // final screenWidth = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: Color(0xffF8F8F8),
-
       //---------------------------- Body Section ----------------------------
       body: SafeArea(
         child: SingleChildScrollView(

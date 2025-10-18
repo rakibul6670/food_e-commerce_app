@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
+import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/food_details_screen.dart';
+import 'package:food_ecommerce_app/ui/widgets/food_card.dart';
 import 'package:food_ecommerce_app/ui/widgets/icon_label_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/on_tap_icon_button.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
+
   const RecommendedFoodSection({super.key});
 
   @override
@@ -14,95 +19,27 @@ class RecommendedFoodSection extends StatelessWidget {
     final theme = Theme.of(context);
     return SizedBox(
       height: 183, //183
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FoodDetailsScreen()),
-            ),
-            child: Container(
-              height: 183,
-              width: 152,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                //boxShadow: [BoxShadow()],
-              ),
-              child: Stack(
-                children: [
-                  //------------------- Favorites icon ----------
-                  Positioned(
-                    top: 10,
-                    right: 16,
-                    child: OnTapIconButton(
-                      iconData: Icons.favorite_border,
-                      color: Colors.transparent,
-                      onTap: () {},
-                    ),
-                  ),
+      child: Consumer<FoodDataController>(
+        builder: (context,controller,child) {
+          return Visibility(
+            visible: controller.recommendedFoodList.isNotEmpty,
+            replacement: Center(child: CircularProgressIndicator(color: Colors.blue,)),
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount:controller.recommendedFoodList.length,
+              itemBuilder: (context, index) {
+                final food = controller.recommendedFoodList[index];
+                Logger logger = Logger();
+                logger.i("Food Image : ${food.images[0]}");
 
-                  // Positioned(top: 10, right: 16, child: Icon(Icons.favorite)),
-
-                  //------------------ Image --------------
-                  Positioned(
-                    top: 22,
-                    left: 0,
-                    right: 0,
-                    child: Image.asset(
-                      AssetsImagesPath.honeyLime,
-                      height: 80,
-                      width: 80,
-                      //  fit: BoxFit.cover,
-                    ),
-                  ),
-
-                  //------------------- Title ----
-                  Positioned(
-                    top: 110,
-                    left: 10,
-                    child: Text(
-                      "Honey lime combo",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-
-                  //---------------- Price and Quantity ----------
-                  Positioned(
-                    bottom: 20,
-                    left: 10,
-                    right: 18,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        //--------------- price ---------------
-                        Text(
-                          "\$230",
-                          style: TextStyle(color: theme.primaryColor),
-                        ),
-
-                        //------------------- add to cart -----------
-                        OnTapIconButton(
-                          height: 24,
-                          width: 24,
-                          iconData: Icons.add,
-
-                          onTap: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                return FoodCard(images:food.images[0] , title: food.title, price: food.price);
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(width: 23);
+              },
             ),
           );
-        },
-        separatorBuilder: (context, index) {
-          return SizedBox(width: 23);
-        },
+        }
       ),
     );
   }
