@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:food_ecommerce_app/data/models/food_data_models.dart';
+import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
+import 'package:logger/web.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/constants/assets_images_path.dart';
-import '../screens/food_details_screen.dart';
+
 import 'on_tap_icon_button.dart';
 
 class FoodCard extends StatelessWidget {
+  final int id;
   final String images;
-  final String title;
-  final int price;
+  final String name;
+  final double price;
+  final FoodDataModel foodDataModel;
+  final VoidCallback onTap;
 
   const FoodCard({
     super.key,
     required this.images,
-    required this.title,
+    required this.name,
     required this.price,
+    required this.id,
+    required this.foodDataModel,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    Logger logger = Logger();
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => FoodDetailsScreen()),
-      ),
+      onTap: onTap,
+
       child: Container(
         height: 183,
         width: 152,
@@ -36,14 +45,26 @@ class FoodCard extends StatelessWidget {
         child: Stack(
           children: [
             //------------------- Favorites icon ----------
-            Positioned(
-              top: 10,
-              right: 16,
-              child: OnTapIconButton(
-                iconData: Icons.favorite_border,
-                color: Colors.transparent,
-                onTap: () {},
-              ),
+            Consumer<FoodDataController>(
+              builder: (context, controller, child) {
+                return Positioned(
+                  top: 5,
+                  right: 5,
+                  child: OnTapIconButton(
+                    iconData: controller.isAlreadyFavorited(id)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.transparent,
+                    onTap: () {
+                      if (controller.isAlreadyFavorited(id)) {
+                        controller.removeToFavorites(id);
+                      } else {
+                        controller.addToFavorites(foodDataModel);
+                      }
+                    },
+                  ),
+                );
+              },
             ),
 
             // Positioned(top: 10, right: 16, child: Icon(Icons.favorite)),
@@ -53,12 +74,12 @@ class FoodCard extends StatelessWidget {
               top: 22,
               left: 0,
               right: 0,
-              child: Image.asset(
+              child: Image.network(
                 images,
                 height: 80,
                 width: 80,
                 errorBuilder: (context, _, StackTrace) {
-                  return Image.network(
+                  return Image.asset(
                     AssetsImagesPath.honeyLime,
                     height: 80,
                     width: 80,
@@ -73,7 +94,7 @@ class FoodCard extends StatelessWidget {
               top: 110,
               left: 10,
               right: 10,
-              child: Text(title, overflow: TextOverflow.ellipsis, maxLines: 1),
+              child: Text(name, overflow: TextOverflow.ellipsis, maxLines: 1),
             ),
 
             //---------------- Price and Quantity ----------

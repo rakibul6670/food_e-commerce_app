@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.microtask((){
+    Future.microtask(() {
       context.read<FoodDataController>().getRecommendedFood();
     });
   }
@@ -62,21 +62,34 @@ class _HomeScreenState extends State<HomeScreen>
                     Spacer(),
 
                     //----------- Favorited icon button ------
-                    IconLabelButton(
-                      height: 42,
-                      width: 24,
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyFavoritesScreen(),
-                        ),
-                      ),
-                      icon: Image.asset(
-                        AssetsIconsPath.favorites,
-                        height: 24,
-                        width: 24,
-                      ),
-                      label: "fav",
+                    Consumer<FoodDataController>(
+                      builder: (context, controller, child) {
+                        return Badge(
+                          backgroundColor: controller.favoritesCount == 0
+                              ? Colors.transparent
+                              : Colors.red,
+                          label: controller.favoritesCount != 0
+                              ? Text(controller.favoritesCount.toString())
+                              : null,
+
+                          child: IconLabelButton(
+                            height: 42,
+                            width: 24,
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyFavoritesScreen(),
+                              ),
+                            ),
+                            icon: Image.asset(
+                              AssetsIconsPath.favorites,
+                              height: 24,
+                              width: 24,
+                            ),
+                            label: "fav",
+                          ),
+                        );
+                      },
                     ),
 
                     //----------- Cart icon button ----------
