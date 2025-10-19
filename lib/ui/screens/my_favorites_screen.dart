@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/widgets/f_e_app_bar.dart';
 import 'package:provider/provider.dart';
+
+import '../../controllers/food_data_controller.dart';
 
 class MyFavoritesScreen extends StatelessWidget {
   const MyFavoritesScreen({super.key});

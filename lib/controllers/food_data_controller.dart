@@ -16,13 +16,23 @@ class FoodDataController extends ChangeNotifier {
 
   //-------------- My Favorites Food List ----
   List<FoodDataModel> _myFavoritesList = [];
+  //-------------- My Basket Food List ----
+  List<FoodDataModel> _myBasketList = [];
 
-  double foodPrice = 320;
-  double totalPrice = 320;
-  double quantity = 1;
+  double _foodPrice = 320;
+  double _totalPrice = 320;
+  double _quantity =1;
+
+  double get foodPrice => _foodPrice;
+  double get totalBasketPrice => foodPrice * _myBasketList.length;
+  double get totalPrice => _totalPrice;
+  double get quantity => _quantity;
 
   List<FoodDataModel> get myFavoritesList => _myFavoritesList;
   int get favoritesCount => _myFavoritesList.length;
+
+  List<FoodDataModel> get myBasketList => _myBasketList;
+  int get basketCount => _myBasketList.length;
 
   //--------- Data Load loading Progress ----
   bool recommendedLp = false;
@@ -51,6 +61,7 @@ class FoodDataController extends ChangeNotifier {
     }
   }
 
+
   //======================== MY Favorite ADD ==============================
   void addToFavorites(FoodDataModel food) {
     if (isAlreadyFavorited(food.id)) {
@@ -71,20 +82,49 @@ class FoodDataController extends ChangeNotifier {
     return _myFavoritesList.where((f) => f.id == id).isNotEmpty;
   }
 
-  //======================= Quantiy increment ============
-  void incrementQuntity() {
-    quantity++;
-    totalPrice = foodPrice * quantity;
+  //======================= Quantity increment ============
+  void incrementQuantity() {
+    _quantity++;
+    _totalPrice = foodPrice * quantity;
     notifyListeners();
   }
 
-  //======================= Quantiy increment ============
-  void decrementQuntity() {
+  //======================= Quantity increment ============
+  void decrementQuantity() {
     if (quantity > 1) {
-      quantity--;
-      totalPrice = (foodPrice * quantity);
-
+      _quantity--;
+      _totalPrice = (foodPrice * quantity);
       notifyListeners();
     }
   }
-}
+
+  //======================== MY Basket ADD ==============================
+  void addToBasket(FoodDataModel food) {
+    if (isAlreadyFavorited(food.id)) {
+      return;
+    }
+    _myBasketList.add(food);
+    notifyListeners();
+  }
+
+  //======================== MY Basket ADD ==============================
+  void removeToBasket(int id) {
+    _myBasketList.removeWhere((foodId) => foodId.id == id);
+    notifyListeners();
+  }
+
+  //===================== Basket already add or not check ================
+  bool isAlreadyBasket(int id) {
+    return _myBasketList.where((f) => f.id == id).isNotEmpty;
+  }
+
+
+  //=================== Total Basket Price ============
+ // void totalBasketPrice (){
+ //    for(var price in _myBasketList){
+ //
+ //    }
+ }
+
+
+

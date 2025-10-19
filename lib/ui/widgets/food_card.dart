@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/data/models/food_data_models.dart';
-import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
 import 'package:logger/web.dart';
 import 'package:provider/provider.dart';
 
+import '../../controllers/food_data_controller.dart';
 import '../../core/constants/assets_images_path.dart';
 
 import 'on_tap_icon_button.dart';
@@ -103,21 +103,33 @@ class FoodCard extends StatelessWidget {
               left: 10,
               right: 18,
               child: Row(
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   //--------------- price ---------------
                   Text("\$$price", style: TextStyle(color: theme.primaryColor)),
 
                   //------------------- add to cart -----------
-                  OnTapIconButton(
-                    height: 24,
-                    width: 24,
-                    iconData: Icons.add,
+                  Consumer<FoodDataController>(
+                    builder: (context, controller, child) {
+                      return OnTapIconButton(
+                        height: 24,
+                        width: 24,
+                        iconData: controller.isAlreadyBasket(id)
+                        ? Icons.remove: Icons.add,
 
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyBasketScreen()),
-                    ),
+                        onTap: () {
+                          if (controller.isAlreadyBasket(id)) {
+                        controller.removeToBasket(id);
+                      } else {
+                        controller.addToBasket(foodDataModel);
+                      }
+
+
+
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

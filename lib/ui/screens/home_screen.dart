@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_icons_path.dart';
 import 'package:food_ecommerce_app/core/theme/app_colors.dart';
-import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/my_favorites_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/search_filter_section.dart';
@@ -9,6 +8,8 @@ import 'package:food_ecommerce_app/ui/widgets/categories_food_section.dart';
 import 'package:food_ecommerce_app/ui/widgets/icon_label_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/recommended_food_section.dart';
 import 'package:provider/provider.dart';
+
+import '../../controllers/food_data_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -92,20 +93,32 @@ class _HomeScreenState extends State<HomeScreen>
                       },
                     ),
 
-                    //----------- Cart icon button ----------
-                    IconLabelButton(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyBasketScreen(),
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        color: theme.primaryColor,
-                        size: 25,
-                      ),
-                      label: "My basket",
+                    //----------- Cart icon button ---------------------
+                    Consumer<FoodDataController>(
+                      builder: (context,controller,child) {
+                        return Badge(
+                          backgroundColor: controller.basketCount == 0
+                              ? Colors.transparent
+                              : Colors.red,
+                          label: controller.basketCount != 0
+                              ? Text(controller.basketCount.toString())
+                              : null,
+                          child: IconLabelButton(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyBasketScreen(),
+                              ),
+                            ),
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: theme.primaryColor,
+                              size: 25,
+                            ),
+                            label: "My basket",
+                          ),
+                        );
+                      }
                     ),
                   ],
                 ),

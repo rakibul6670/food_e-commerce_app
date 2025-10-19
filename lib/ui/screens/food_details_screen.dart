@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_ecommerce_app/core/constants/assets_images_path.dart';
 import 'package:food_ecommerce_app/data/models/food_data_models.dart';
-import 'package:food_ecommerce_app/providers/food_data_controller.dart';
+
 import 'package:food_ecommerce_app/ui/screens/my_basket_screen.dart';
 import 'package:food_ecommerce_app/ui/screens/my_favorites_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/on_tap_icon_button.dart';
 import 'package:provider/provider.dart';
+
+import '../../controllers/food_data_controller.dart';
 
 class FoodDetailsScreen extends StatelessWidget {
   final FoodDataModel model;
@@ -129,7 +131,7 @@ class FoodDetailsScreen extends StatelessWidget {
                               color: Colors.transparent,
                               border: Border.all(color: Color(0xff808080)),
                               iconData: Icons.remove,
-                              onTap: () => controller.decrementQuntity(),
+                              onTap: () => controller.decrementQuantity(),
                             ),
 
                             SizedBox(width: 24),
@@ -149,7 +151,7 @@ class FoodDetailsScreen extends StatelessWidget {
                             OnTapIconButton(
                               //border: Border.all(color: Color(0xff808080)),
                               iconData: Icons.add,
-                              onTap: () => controller.incrementQuntity(),
+                              onTap: () => controller.incrementQuantity(),
                             ),
 
                             Spacer(),
@@ -209,10 +211,11 @@ class FoodDetailsScreen extends StatelessWidget {
                         );
                       }),
                     ),
+
                     //-----------space -----
-                    SizedBox(height: 20),
-                    Divider(color: Color(0xffF3F3F3), height: 1),
-                    SizedBox(height: 20),
+                    // SizedBox(height: 20),
+                    // Divider(color: Color(0xffF3F3F3), height: 1),
+                    // SizedBox(height: 20),
 
                     //-------------------- description ---------------
 
@@ -227,7 +230,7 @@ class FoodDetailsScreen extends StatelessWidget {
                     // ),
 
                     //-------------space ----------
-                    SizedBox(height: 43),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -253,12 +256,19 @@ class FoodDetailsScreen extends StatelessWidget {
                   iconData: controller.isAlreadyFavorited(model.id)
                       ? Icons.favorite
                       : Icons.favorite_border,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyFavoritesScreen(),
-                    ),
-                  ),
+                  onTap: () {
+                    if (controller.isAlreadyFavorited(model.id)) {
+                      controller.removeToFavorites(model.id);
+                    } else {
+                      controller.addToFavorites(model);
+                    }
+                  }
+                  //     Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => MyFavoritesScreen(),
+                  //   ),
+                  // ),
                 );
               },
             ),
@@ -267,13 +277,24 @@ class FoodDetailsScreen extends StatelessWidget {
             Spacer(),
 
             //--------------------- Add Basket button ------------
-            CustomTextButton(
-              width: screenWidth * .60,
-              buttonName: "Add to Basket",
-              onpressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyBasketScreen()),
-              ),
+            Consumer<FoodDataController>(
+              builder: (context,controller,child) {
+                return CustomTextButton(
+                  width: screenWidth * .60,
+                  buttonName: controller.isAlreadyBasket(model.id) ?"Remove to Basket": "Add to Basket",
+                  onpressed: () {
+                    if (controller.isAlreadyBasket(model.id)) {
+                      controller.removeToBasket(model.id);
+                    } else {
+                      controller.addToBasket(model);
+                    }
+                  }
+                  // => Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyBasketScreen()),
+                  // ),
+                );
+              }
             ),
           ],
         ),

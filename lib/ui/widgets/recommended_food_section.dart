@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_ecommerce_app/providers/food_data_controller.dart';
 import 'package:food_ecommerce_app/ui/screens/food_details_screen.dart';
 import 'package:food_ecommerce_app/ui/widgets/food_card.dart';
 import 'package:provider/provider.dart';
+
+import '../../controllers/food_data_controller.dart';
 
 class RecommendedFoodSection extends StatelessWidget {
   const RecommendedFoodSection({super.key});
@@ -53,6 +54,7 @@ class RecommendedFoodSection extends StatelessWidget {
           );
         },
       ),
+
     );
   }
 }
