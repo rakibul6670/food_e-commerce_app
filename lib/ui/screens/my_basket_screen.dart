@@ -4,7 +4,6 @@ import 'package:food_ecommerce_app/ui/widgets/checkout_bottom_modal_sheet.dart';
 import 'package:food_ecommerce_app/ui/widgets/custom_text_button.dart';
 import 'package:food_ecommerce_app/ui/widgets/f_e_app_bar.dart';
 import 'package:provider/provider.dart';
-
 import '../../controllers/food_data_controller.dart';
 
 class MyBasketScreen extends StatelessWidget {

@@ -135,12 +135,18 @@ checkoutBottomModalSheet(context) {
                                   color: theme.primaryColor,
                                 ),
                                 buttonName: "Pay on Delivery",
-                                onpressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => OrderCompleteScreen(),
-                                  ),
-                                ),
+                                onpressed: () {
+                                  if (orderFormProvider.userOrderValidate()) {
+                                    //-------------- Nevigate to Orerder complete screen  ------
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            OrderCompleteScreen(),
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
 
                               //--------- free jayga ja space nibe-----
